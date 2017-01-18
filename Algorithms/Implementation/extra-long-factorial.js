@@ -45,7 +45,7 @@ const productStep = (num, left, place) => {
 
 const productWithSingleDigit = (num, right) => (
 	addCarry(toNums(num).reduce(({ val, carried }, left) => ({
-		val: `${ (left * right + carried) % 10 }${ val }`,
+		val: ((left * right + carried) % 10) + val,
 		carried: Math.floor((left * right + carried) / 10)
 	}), { val: '', carried: 0 }))
 );
@@ -62,7 +62,7 @@ const addPlaces = (num, place, added) => {
 
 const bigSum = (left, right) => (
 	addCarry(twoReduce(left, right, ({ val, carried }, lNum, rNum) => ({
-		val: `${ (lNum + rNum + carried) % 10 }${ val }`,
+		val: ((lNum + rNum + carried) % 10) + val,
 		carried: (lNum + rNum + carried > 9) ? 1 : 0
 	}), { val: '', carried: 0 }))
 );
